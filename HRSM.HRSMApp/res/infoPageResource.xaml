@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  
+   
+
+    <Style TargetType="Border" x:Key="brInfo">
+        <Setter Property="Margin" Value="20,10"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="#FFCCD1D3"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="CornerRadius" Value="2"/>
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="spInfo">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Orientation" Value="Vertical"/>
+        <Setter Property="Margin" Value="10"/>
+    </Style>
+
+    <Style TargetType="StackPanel" >
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+        <Style TargetType="TextBlock" x:Key="tblockStyle" >
+                <Setter Property="Margin" Value="10,0,0,0"/>
+                <Setter Property="TextAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Width" Value="60"/>
+        </Style>
+        <Style TargetType="TextBlock" >
+        <Setter Property="Margin" Value="10,0,0,0"/>
+        <Setter Property="TextAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Width" Value="60"/>
+    </Style>
+
+      
+
+        <Style TargetType="Button" x:Key="okBtnStyle" BasedOn="{StaticResource btnBaseStyle}">
+        <Setter Property="Background" Value="#FFE7A949"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="BorderBrush" Value="#FFE7A949"/>
+        <Setter Property="Foreground" Value="#FFFCFCFC"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="BorderBrush" Value="Gray"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button" x:Key="closeStyle" BasedOn="{StaticResource btnBaseStyle}">
+        <Setter Property="Background" Value="#FFDFDBDB"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="BorderBrush" Value="#FFDFDBDB"/>
+        <Setter Property="Foreground" Value="#FF868686"/>
+    </Style>
+
+    <DataTemplate x:Key="listItemDT">
+        <CheckBox IsChecked="{Binding IsCheck}" Content="{Binding RoleInfo.RoleName}"/>
+    </DataTemplate>
+
+    <ItemsPanelTemplate x:Key="listPanelTemp">
+        <WrapPanel Orientation="Horizontal"/>
+    </ItemsPanelTemplate>
+</ResourceDictionary>

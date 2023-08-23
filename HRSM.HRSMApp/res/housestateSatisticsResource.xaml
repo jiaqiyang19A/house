@@ -1,0 +1,89 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             >
+        <Style TargetType="{x:Type TextBlock}" x:Key="tbBaseStyle">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="colNameStyle" BasedOn="{StaticResource tbBaseStyle}">
+                <Setter Property="Foreground" Value="#FFA26E1D"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="Margin" Value="10,0"/>
+        </Style>
+       
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="bandHeader" BasedOn="{StaticResource tbBaseStyle}">
+                <Setter Property="Foreground" Value="OrangeRed"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="5,0"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="bandCountStyle" BasedOn="{StaticResource tbBaseStyle}">
+                <Setter Property="Foreground" Value="YellowGreen"/>
+                <Setter Property="Margin" Value="0,3"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="cellStyle" >
+                <Setter Property="Margin" Value="15,5"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="publishCountStyle" BasedOn="{StaticResource cellStyle}">
+                <Setter Property="Foreground" Value="DarkOliveGreen"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="unPublishCountStyle" BasedOn="{StaticResource cellStyle}">
+                <Setter Property="Foreground" Value="Red"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="rentCountStyle" BasedOn="{StaticResource cellStyle}">
+                <Setter Property="Foreground" Value="#FFD12BA3"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="unRentCountStyle" BasedOn="{StaticResource cellStyle}">
+                <Setter Property="Foreground" Value="#FF82686B"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="saleCountStyle" BasedOn="{StaticResource cellStyle}">
+                <Setter Property="Foreground" Value="#FF1A39E4"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="unSaleCountStyle" BasedOn="{StaticResource cellStyle}">
+                <Setter Property="Foreground" Value="#FF453A4B"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="lblSatTitleStyle">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="#062B63"/>
+                <Setter Property="Padding" Value="1" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <!--<Setter Property="Template">
+                        <Setter.Value>
+                                <ControlTemplate TargetType="Label">
+                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                <Border BorderBrush="#547AB3" BorderThickness="1">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                        </Border>
+                                </ControlTemplate>
+                        </Setter.Value>
+                </Setter>-->
+        </Style>
+
+        <Style TargetType="Border" x:Key="brSatTitleStyle">
+                <Setter Property="CornerRadius" Value="2,2,0,0" />
+                <Setter Property="Height" Value="48" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="#062B63"/>
+                <Setter Property="Background">
+                        <Setter.Value>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Color="#5A80B9" Offset="0"/>
+                                        <GradientStop Color="#294E89" Offset="0.4"/>
+                                        <GradientStop Color="#5A80B9" Offset="1"/>
+                                </LinearGradientBrush>
+                        </Setter.Value>
+                </Setter>
+        </Style>
+</ResourceDictionary>
