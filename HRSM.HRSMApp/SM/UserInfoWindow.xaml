@@ -1,0 +1,61 @@
+﻿<Window x:Class="HRSM.HRSMApp.SM.UserInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:utils="clr-namespace:HRSM.HRSMApp.Utils"
+        xmlns:local="clr-namespace:HRSM.HRSMApp.SM"
+        mc:Ignorable="d"
+        Title="用户信息页" Height="430" Width="400" Name="userInfoWindow">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../res/infoPageResource.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Border  Grid.Row="1" Style="{StaticResource brInfo}">
+            <StackPanel Style="{StaticResource spInfo}">
+                <StackPanel>
+                    <TextBlock Text ="账号：" />
+                    <TextBox Name="txtUserName" Text="{Binding UserName}" Style="{StaticResource textBoxStyle}">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel >
+                    <TextBlock Text ="密码：" />
+                    <PasswordBox Name="txtUserPwd" utils:PasswordBoxHelper.Attach="True" utils:PasswordBoxHelper.Password="{Binding UserPwd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource passwordBoxStyle }" >
+                    </PasswordBox>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text ="姓名：" />
+                    <TextBox Name="txtUserFName" Text="{Binding UserFName}" Style="{StaticResource textBoxStyle}"/>
+                </StackPanel>
+                <StackPanel >
+                    <TextBlock Text ="电话：" />
+                    <TextBox Name="txtUserPhone" Text="{Binding UserPhone}" Style="{StaticResource textBoxStyle}">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text ="状态：" />
+                    <RadioButton Name="rbtnNormal" Margin="20,0" IsChecked="{Binding IsNormal}"  Content="正常"/>
+                    <RadioButton Name="rbtnFrozen" Margin="20,0" IsChecked="{Binding IsFrozen,Mode=OneWay}" Content="冻结"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text ="角色：" />
+                    <ListBox  Width="240" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                               ItemsSource="{Binding RoleList}" ItemTemplate="{StaticResource listItemDT}" ItemsPanel="{StaticResource listPanelTemp}" BorderThickness="1" BorderBrush="LightGray"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <StackPanel  Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Width="200">
+                        <Button Name="btnAdd"  Content="{Binding ConfirmBtnContent}" Visibility="{Binding ConfirmBtnVisible}" IsEnabled="{Binding IsConfirmBtnEnabled}" Command="{Binding ConfirmCmd}" Style="{StaticResource okBtnStyle}" />
+            <Button Name="btnCancel"  Content="关闭"   Command="{Binding CloseWindowCmd}" CommandParameter="{Binding ElementName=userInfoWindow}" Style="{StaticResource closeStyle}" />
+        </StackPanel>
+    </Grid>
+</Window>

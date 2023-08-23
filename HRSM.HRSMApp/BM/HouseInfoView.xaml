@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="HRSM.HRSMApp.BM.HouseInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:HRSM.HRSMApp.BM"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000" Name="ucHouseInfo">
+        <UserControl.Resources>
+                <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                                <ResourceDictionary Source="../res/infoPageResource.xaml"/>
+                        </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+        </UserControl.Resources>
+        <Grid>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Label Content="--房屋信息页面" Grid.Row="0" Margin="10,0" Style="{StaticResource lblInfoTitleStyle}"/>
+                <Border Grid.Row="1" Style="{StaticResource brInfo}">
+                        <StackPanel Orientation="Vertical">
+                                <WrapPanel HorizontalAlignment="Stretch" Height="auto" Orientation="Horizontal"  Margin="10"  >
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="房屋名称：" />
+                                                <TextBox Name="txtHouseName" Text="{Binding HouseInfo.HouseName}" Style="{StaticResource textBoxStyle}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="所在楼宇：" />
+                                                <TextBox Name="txtBuilding" Text="{Binding HouseInfo.Building}" Style="{StaticResource textBoxStyle}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="业主："  />
+                                                <ComboBox Name="cboOwners" ItemsSource="{Binding CboOwners}" DisplayMemberPath="OwnerName" SelectedValuePath="OwnerId" SelectedValue="{Binding  OwnerId}" Style="{StaticResource cboStyle}">
+                                                </ComboBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="租售类型：" />
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="142" >
+                                                        <RadioButton Name="rbtnRent" Content="出租" IsChecked="{Binding IsRent,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Command="{Binding CheckRentSaleCmd}" ></RadioButton>
+                                                        <RadioButton Name="rbtnSale" Content="出售"  Margin="10,0,0,0" IsChecked="{Binding IsSale,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Command="{Binding CheckRentSaleCmd}"></RadioButton>
+                                                </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="价格："  />
+                                                <TextBox Name="txtPrice" Text ="{Binding  HouseInfo.HousePrice}" Style="{StaticResource textBoxStyle}" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="单位："  />
+                                                <ComboBox Name="cboUnits" ItemsSource="{Binding CboUnits}" DisplayMemberPath="PUnitName" SelectedValuePath="PUnitId" Text="{Binding  PriceUnit}" Style="{StaticResource cboStyle}">
+                                                </ComboBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="朝向："  />
+                                                <ComboBox Name="cboDirections" ItemsSource="{Binding CboDirections}"  Text="{Binding  HouseDirection}" Style="{StaticResource cboStyle}">
+                                                </ComboBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="户型："  />
+                                                <ComboBox Name="cboLayouts"  ItemsSource="{Binding CboLayouts}" DisplayMemberPath="HLName" Text="{Binding  HouseLayout}" Style="{StaticResource cboStyle}">
+                                                </ComboBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="楼层：" />
+                                                <TextBox  Name="txtFloor" Text="{Binding  HouseInfo.HouseFloor}" Style="{StaticResource textBoxStyle}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="面积：" />
+                                                <TextBox  Name="txtAreas"  Text="{Binding  HouseInfo.HouseArea}" Style="{StaticResource textBoxStyle}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="状态：" />
+                                                <ComboBox Name="cboStates" ItemsSource="{Binding CboStates}" DisplayMemberPath="StateName" SelectedValuePath="StateId" Text="{Binding  HouseState}" Style="{StaticResource cboStyle}">
+                                                </ComboBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="发布时间：" />
+                                                <TextBox  Name="tbPubTime"  Text="{Binding  HouseInfo.PublishTime}" IsEnabled="False" Style="{StaticResource textBoxStyle}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="添加时间：" />
+                                                <TextBox  Name="tbCreateTime" Text="{Binding  HouseInfo.CreateTime}" IsEnabled="False" Style="{StaticResource textBoxStyle}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="发布：" />
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="140" >
+                                                        <RadioButton Name="rbtnPublish" Content="是" IsChecked="{Binding  HouseInfo.IsPublish}"></RadioButton>
+                                                        <RadioButton Name="rbtnUnPublish" Content="否"  IsChecked="{Binding UnPublish}" Margin="10,0"></RadioButton>
+                                                </StackPanel>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="房屋地址：" />
+                                                <TextBox  Name="txtAddress" Text="{Binding  HouseInfo.HouseAddress}" Width="260" Style="{StaticResource textBoxStyle}"/>
+                                        </StackPanel>
+                                       
+                                </WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="房屋图片：" />
+                                                <Border BorderThickness="1" BorderBrush="#FF325679" Width="200"  Height="100" >
+                                                        <Image Name="imgPic"    Source="{Binding  HousePic}" Stretch="Uniform" >
+                                                                <i:Interaction.Triggers>
+                                                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                                                <i:InvokeCommandAction Command="{Binding ChoosePicCmd}"/>
+                                                                        </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
+                                                        </Image>
+                                                </Border>
+
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text ="房屋描述：" />
+                                                <TextBox Name="txtRemark"  Text="{Binding  HouseInfo.Remark}" Width="400" TextWrapping="Wrap"  VerticalContentAlignment="Top" Height="100"/>
+                                        </StackPanel>
+                                </StackPanel>
+                        </StackPanel>
+                </Border>
+                <StackPanel  Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Width="200">
+                        <Button Name="btnAdd"  Content="{Binding ConfirmBtnContent}" Visibility="{Binding ConfirmBtnVisible}" IsEnabled="{Binding IsConfirmBtnEnabled}" CommandParameter="{Binding ElementName=ucHouseInfo}" Command="{Binding ConfirmCmd}" Style="{StaticResource okBtnStyle}" />
+                        <Button Name="btnCancel"  Content="关闭"   Command="{Binding CloseTabPage}" CommandParameter="{Binding ElementName=ucHouseInfo}" Style="{StaticResource closeStyle}" />
+                </StackPanel>
+        </Grid>
+</UserControl>

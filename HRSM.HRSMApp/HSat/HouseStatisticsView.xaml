@@ -1,0 +1,152 @@
+﻿<UserControl x:Class="HRSM.HRSMApp.HSat.HouseStatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:vm="clr-namespace:HRSM.HRSMApp.ViewModels.HSat"
+             xmlns:local="clr-namespace:HRSM.HRSMApp.HSat"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000">
+        <UserControl.DataContext>
+                <vm:HouseStatisticsViewModel/>
+        </UserControl.DataContext>
+        <UserControl.Resources>
+                <DataTemplate x:Key="bandDtemp">
+                        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Label}},Path=Tag}"  Style="{StaticResource bandHeader}"/>
+                                <TextBlock Text="{Binding}" TextAlignment="Center" Style="{StaticResource bandCountStyle}"/>
+                        </StackPanel>
+                </DataTemplate>
+                <!--<DataTemplate x:Key="bandHouseTotal">
+                        <StackPanel  Orientation="Horizontal" >
+                                <TextBlock Text="房屋总计"  Style="{StaticResource bandHeader}"/>
+                                <TextBlock Text="{Binding }" TextAlignment="Center" Style="{StaticResource bandCountStyle}"/>
+                        </StackPanel>
+                </DataTemplate>-->
+
+                <!--<DataTemplate x:Key="bandSaleTotal" >
+                        <StackPanel  Orientation="Horizontal" >
+                                <TextBlock Text="出售"  Style="{StaticResource bandHeader}"/>
+                                <TextBlock Text="{Binding}" TextAlignment="Center" Style="{StaticResource bandCountStyle}"/>
+                        </StackPanel>
+                </DataTemplate>-->
+        </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Border  Grid.Row="0" Grid.Column="0" BorderBrush="#FF282859" BorderThickness="2" CornerRadius="3" Margin="5" Background="#FFB7D5FA" >
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                <Border   Style="{StaticResource brSatTitleStyle}" HorizontalAlignment="Stretch" Margin="2,2,2,0">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding TotalCount}" Tag="房屋总计" ContentTemplate="{StaticResource bandDtemp}" Style="{StaticResource lblSatTitleStyle}" BorderThickness="0,0,1,0" Grid.Column="0"/>
+                        <Label Content="{Binding TRentCount}"  Tag="出租" ContentTemplate="{StaticResource bandDtemp}" Style="{StaticResource lblSatTitleStyle}"  BorderThickness="0,0,1,0" Grid.Column="1"/>
+                        <Label Content="{Binding TSaleCount}"  Tag="出售" ContentTemplate="{StaticResource bandDtemp}" Style="{StaticResource lblSatTitleStyle}" Grid.Column="2" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource brSatTitleStyle}" HorizontalAlignment="Stretch"  Height="30" Margin="2,0,2,0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="#FFD1DFF6" Offset="0"/>
+                            <GradientStop Color="#FF91A8CE" Offset="0.404"/>
+                            <GradientStop Color="#FFB8D0F4" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid x:Name="gridTitles">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock  Style="{StaticResource colNameStyle}" Text="已发布" Grid.Column="0" />
+                        <TextBlock  Style="{StaticResource colNameStyle}" Text="未发布" Grid.Column="1"/>
+                        <TextBlock  Style="{StaticResource colNameStyle}" Text="已出租" Grid.Column="2" />
+                        <TextBlock  Style="{StaticResource colNameStyle}" Text="未出租" Grid.Column="3"/>
+                        <TextBlock  Style="{StaticResource colNameStyle}" Text="已出售" Grid.Column="4" />
+                        <TextBlock  Style="{StaticResource colNameStyle}" Text="未出售" Grid.Column="5"/>
+                    </Grid>
+
+                </Border>
+                <Border  HorizontalAlignment="Stretch"  Height="30" Margin="2,0,2,0" BorderBrush="#FF4781D9" Background="#FFF3F3F3" BorderThickness="1">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock  Style="{StaticResource publishCountStyle}" Text="{Binding PublishedCount}" Grid.Column="0"  />
+                        <TextBlock  Style="{StaticResource unPublishCountStyle}" Text="{Binding UnPublishedCount}" Grid.Column="1"/>
+                        <TextBlock  Style="{StaticResource rentCountStyle}" Text="{Binding HasRentCount}"   Grid.Column="2" />
+                        <TextBlock  Style="{StaticResource unRentCountStyle}" Text="{Binding UnRentCount}"  Grid.Column="3"/>
+                        <TextBlock  Style="{StaticResource saleCountStyle}" Text="{Binding HasSaleCount}"  Grid.Column="4" />
+                        <TextBlock  Style="{StaticResource unSaleCountStyle}" Text="{Binding UnSaleCount}" Grid.Column="5"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Border>
+        <Button x:Name="btnOut" Grid.Row="1" Content="导出" Grid.Column="0"  HorizontalAlignment="Left" Margin="20,2" Height="30" Command="{Binding ExportDataCmd}" Style="{StaticResource okBtnStyle}" />
+        <lvc:CartesianChart  Grid.Column="1" Series="{Binding HouseSeriesList}" LegendLocation="Top" Margin="10">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="类别" Labels="{Binding Labels}" FontSize="14" Position="LeftBottom" Foreground="Red"  >
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Stroke="Orange" StrokeThickness="1"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="房屋数" FontSize="14" Position="LeftBottom" Foreground="DodgerBlue" ShowLabels="True">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Step="10"  Stroke="LightBlue" StrokeThickness="1"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+       
+        </lvc:CartesianChart>
+
+        <!--<lvc:CartesianChart Grid.Column="1" LegendLocation="Left" Background="LightGray">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="编号"  Labels="a,b,c,d" Foreground="Red" LabelsRotation="30"  Position="LeftBottom">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Stroke="Orange" StrokeThickness="1"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="产量"   Foreground="Blue" LabelsRotation="10"  Position="LeftBottom"  >
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Stroke="Yellow" StrokeThickness="1"  Step="20"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+            <lvc:CartesianChart.Series>
+                <lvc:LineSeries Values="25,40,80,55" LineSmoothness="0" Stroke="Red" Fill="LightGreen" PointGeometrySize="20"  PointForeground="Green">
+                    <lvc:LineSeries.PointGeometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="0,0,20,20"/>
+                        </GeometryGroup>
+                    </lvc:LineSeries.PointGeometry>
+                </lvc:LineSeries>
+                <lvc:LineSeries Values="10,30,49,55" LineSmoothness="1" Stroke="OrangeRed" Fill="Transparent" Opacity="0.5"/>
+            </lvc:CartesianChart.Series>
+        </lvc:CartesianChart>-->
+          
+            
+    </Grid >
+</UserControl>

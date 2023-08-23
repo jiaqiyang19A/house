@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="HRSM.HRSMApp.UControls.ListToolBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HRSM.HRSMApp.UControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="800" Name="ucToolBar">
+    <UserControl.Resources>
+      
+    </UserControl.Resources>
+    <Grid>
+        <ToolBar   Header="工具栏"  Style="{StaticResource tbarStyle }">
+            <Button Name="toolFind" Content="查询"  Visibility="{Binding ShowFind}" Command="{Binding FindCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource btnItemStyle}"/>
+            <Button x:Name="toolImport" Content="导入"  Visibility="{Binding ShowImport}" Command="{Binding ImportCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource btnItemStyle}"/>
+            <Button x:Name="toolPublish" Content="发布"   Visibility="{Binding ShowPublish}" Command="{Binding PublishCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ucToolBar}"  Style="{StaticResource btnItemStyle}" />
+            <Button x:Name="toolUnPublish" Content="取消发布"  Visibility="{Binding ShowUnPublish}" Command="{Binding UnPublishCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ucToolBar}"  Style="{StaticResource btnItemStyle}" />
+            <Button Name="toolAllFULog" Content="所有客户日志" Visibility="{Binding ShowAllCustFULog}" Command="{Binding CustAllFULogCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource btnItemStyle}"/>
+            <Button Name="toolCustFULog" Content="客户跟进日志" Visibility="{Binding ShowCustFULog}" Command="{Binding CustFULogCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  CommandParameter="{Binding ElementName=ucToolBar}"  Style="{StaticResource btnItemStyle}"/>
+            <Button Name="toolAllRequestList" Content="所有客户需求"  Visibility="{Binding ShowAllRequestList}" Command="{Binding AllRequestListCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource btnItemStyle}"/>
+            <Button Name="toolCustRequestList" Content="客户意向需求"  Visibility="{Binding ShowCustRequestList}" Command="{Binding CustRequestListCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ucToolBar}"  Style="{StaticResource btnItemStyle}"/>
+            <Separator/>
+            <Button Name="toolAdd" Content="新增" Visibility="{Binding ShowAdd}" Command="{Binding AddCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ucToolBar}" Style="{StaticResource btnItemStyle}"/>
+            <Button Name="toolEdit" Content="修改"  Visibility="{Binding ShowEdit}" Command="{Binding EditCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ucToolBar}"  Style="{StaticResource btnItemStyle}"/>
+            <Button Name="toolInfo" Content="查看"  Visibility="{Binding ShowInfo}" Command="{Binding InfoCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ucToolBar}"  Style="{StaticResource btnItemStyle}"/>
+            <Button Name="toolDel" Content="删除" Visibility="{Binding ShowDelete}" Command="{Binding DeleteCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ucToolBar}"  Style="{StaticResource btnItemStyle}"/>
+            <Button Name="toolRecover" Content="恢复"  Visibility="{Binding ShowRecover}" Command="{Binding RecoverCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ucToolBar}"  Style="{StaticResource btnItemStyle}"/>
+            <Button Name="toolRemove" Content="移除"  Visibility="{Binding ShowRemove}" Command="{Binding RemoveCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ucToolBar}"  Style="{StaticResource btnItemStyle}"/>
+            <Button Name="toolRight" Content="权限分配"  Visibility="{Binding ShowRight}" Command="{Binding RightCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ucToolBar}"  Style="{StaticResource btnItemStyle}"/>
+            <Button Name="toolClose" Content="关闭" Visibility="{Binding ShowClose}" Command="{Binding CloseCommand,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ucToolBar}"  Style="{StaticResource btnItemStyle}" />
+        </ToolBar>
+    </Grid>
+</UserControl>

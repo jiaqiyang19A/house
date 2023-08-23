@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="HRSM.HRSMApp.CRM.CustomerInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HRSM.HRSMApp.CRM"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000" Name="ucCustomerInfo">
+        <UserControl.Resources>
+                <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                                <ResourceDictionary Source="../res/infoPageResource.xaml"/>
+                        </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+        </UserControl.Resources>
+        <Grid>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Label Content="--客户信息页面" Grid.Row="0" Style="{StaticResource lblInfoTitleStyle}" />
+                <Border Grid.Row="1" Style="{StaticResource brInfo}">
+                        <WrapPanel HorizontalAlignment="Stretch" Height="auto" Orientation="Horizontal"  Margin="10"  >
+                                <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text ="客户名称：" />
+                                        <TextBox Name="txtCustomerName" Text="{Binding CustInfo.CustomerName}"  Style="{StaticResource textBoxStyle}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text ="联系人：" />
+                                        <TextBox Name="txtContactor" Text="{Binding CustInfo.Contactor}" Style="{StaticResource textBoxStyle}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text ="客户电话：" />
+                                        <TextBox Name="txtPhone" Text="{Binding CustInfo.CustomerPhone}"  Style="{StaticResource textBoxStyle}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text ="客户类别：" />
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="140" >
+                                                <RadioButton Name="rbtnPersonal" Content="个人" IsChecked="{Binding IsPersonal}"  Margin="10,0"></RadioButton>
+                                                <RadioButton Name="rbtnUnit" Content="单位"  Margin="10,0" IsChecked="{Binding IsUnit}"></RadioButton>
+                                        </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text ="客户地址：" />
+                                        <TextBox Name="txtAddress" Width="385" Text="{Binding CustInfo.CustomerAddress}" Style="{StaticResource textBoxStyle}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"   Visibility="{Binding IsTextVisable}" >
+                                        <TextBlock Text ="客户状态：" />
+                                        <TextBox Name="txtCustState" Text="{Binding CustInfo.CustomerState}" Style="{StaticResource readonlyTextBoxStyle}" Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Visibility="{Binding IsTextVisable }" >
+                                        <TextBlock Text ="创建时间：" />
+                                        <TextBox Name="txtCreateTime" Text="{Binding CustInfo.CreateTime}" Style="{StaticResource readonlyTextBoxStyle}" Width="180"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text ="客户描述：" VerticalAlignment="Top" />
+                                        <TextBox Name="txtRemark" TextWrapping="Wrap" VerticalContentAlignment="Top" Width="610" Height="240" Text="{Binding  CustInfo.Remark}"  Style="{StaticResource txtBaseStyle}"/>
+                                </StackPanel>
+                        </WrapPanel>
+                </Border>
+                <StackPanel  Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Width="200">
+                        <Button Name="btnAdd"  Content="{Binding ConfirmBtnContent}" Visibility="{Binding ConfirmBtnVisible}" IsEnabled="{Binding IsConfirmBtnEnabled}" Command="{Binding ConfirmCmd}" Style="{StaticResource okBtnStyle}" />
+                        <Button Name="btnCancel"  Content="关闭"   Command="{Binding CloseTabPage}" CommandParameter="{Binding ElementName=ucCustomerInfo}" Style="{StaticResource closeStyle}" />
+                </StackPanel>
+        </Grid>
+</UserControl>

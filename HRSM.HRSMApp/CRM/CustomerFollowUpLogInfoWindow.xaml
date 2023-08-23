@@ -1,0 +1,51 @@
+﻿<Window x:Class="HRSM.HRSMApp.CRM.CustomerFollowUpLogInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HRSM.HRSMApp.CRM"
+        mc:Ignorable="d"
+        Title="客户跟进日志信息页面" Height="450" Width="600" Name="custFollowUpLogInfoWindow" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        <Window.Resources>
+                <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                                <ResourceDictionary Source="../res/infoPageResource.xaml"/>
+                        </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+        </Window.Resources>
+        <Grid>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Border  Grid.Row="1" Style="{StaticResource brInfo}">
+                        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical"  Margin="10" >
+                                <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text ="跟进时间：" />
+                                        <DatePicker Name="txtFollowTime"  SelectedDate="{Binding FollowUpTime}" DisplayDateStart="2020-01-01" IsTodayHighlighted="True" FirstDayOfWeek="Monday" Style="{DynamicResource dateStyle}"   CalendarStyle="{StaticResource calendarStyle}"   >
+                                        </DatePicker>
+                                        <TextBlock Text="跟进人：" />
+                                        <TextBox  Name="txtFUser" Text="{Binding FollowUpUser}" Style="{StaticResource textBoxStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text ="客户需求：" />
+                                        <ComboBox Name="cboCustRequests" Style="{StaticResource cboStyle}" Width="400" ItemsSource="{Binding CboCustRequests}" SelectedValue="{Binding CustRequestId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="RequestContent" SelectedValuePath="CustRequestId" IsEnabled="{Binding IsCboRequestEnable}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text ="跟进内容：" VerticalAlignment="Top" />
+                                        <TextBox Name="txtFollowUpContent" Width="400"   Height="100" TextWrapping="Wrap" VerticalContentAlignment="Top" Text="{Binding FollowUpContent}" Style="{StaticResource textBoxStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text ="跟进状态：" />
+                                        <ComboBox Name="cboFUStates" ItemsSource="{Binding CboFUStates}" SelectedValue="{Binding FollowUpState}" Style="{StaticResource cboStyle}">
+                                        </ComboBox>
+                                </StackPanel>
+                        </StackPanel>
+                </Border>
+                <StackPanel  Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Width="200">
+                        <Button Name="btnAdd"  Content="{Binding ConfirmBtnContent}" Visibility="{Binding ConfirmBtnVisible}" IsEnabled="{Binding IsConfirmBtnEnabled}" Command="{Binding ConfirmCmd}" Style="{StaticResource okBtnStyle}" />
+                        <Button Name="btnCancel"  Content="关闭"   Command="{Binding CloseWindowCmd}" CommandParameter="{Binding ElementName=custFollowUpLogInfoWindow}" Style="{StaticResource closeStyle}" />
+                </StackPanel>
+        </Grid>
+</Window>

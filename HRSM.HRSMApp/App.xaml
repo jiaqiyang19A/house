@@ -1,0 +1,21 @@
+﻿<Application x:Class="HRSM.HRSMApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HRSM.HRSMApp"
+             StartupUri="MainWindow.xaml">
+        <Application.Resources>
+                <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                                <ResourceDictionary Source="res/commonResource.xaml"/>
+                                <ResourceDictionary Source="res/mainResource.xaml"/>
+                                <ResourceDictionary Source="res/mainTVResource.xaml"/>
+                                <ResourceDictionary Source="res/mainTCResource.xaml"/>
+                                <ResourceDictionary Source="res/loginResource.xaml"/>
+                                <ResourceDictionary Source="res/houseListResource.xaml"/>
+                                <ResourceDictionary Source="res/dataGridResource.xaml"/>
+                                <ResourceDictionary Source="res/datecalendarResource.xaml"/>
+                                <ResourceDictionary Source="res/housestateSatisticsResource.xaml"/>
+                        </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+        </Application.Resources>
+</Application>
